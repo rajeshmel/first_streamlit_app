@@ -19,7 +19,6 @@ streamlit.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
 # Let's put a pick list here so they can pick the fruit they want to include 
 fruits_selected = streamlit.multiselect("Pick some fruits:", list(my_fruit_list.index),['Avocado','Strawberries'])
 fruits_to_show = my_fruit_list.loc[fruits_selected]
-
 # Display the table on the page.
 streamlit.dataframe(fruits_to_show)
 
@@ -42,7 +41,7 @@ except URLError as e:
    streamlit.error()
 
 #my_data_rows = my_cur.fetchall()
-streamlit.header("The fruit load list contains:")
+streamlit.header("View our Fruit List - Add Your Favorites!")
 #Snowflake-related functions
 def get_fruit_load_list():
    with my_cnx.cursor() as my_cur:
@@ -50,7 +49,7 @@ def get_fruit_load_list():
       return my_cur.fetchall()
    
 #Add a button to load the list
-if streamlit.button('Get Fruit Load List'):
+if streamlit.button('Get Fruit List'):
    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
    my_data_rows = get_fruit_load_list()
    my_cnx.close()
